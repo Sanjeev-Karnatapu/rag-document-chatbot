@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Chroma database
+chroma_db/
+
+# Uploaded PDFs
+uploaded_pdfs/
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+
+# OS files
+Thumbs.db
+.DS_Store
