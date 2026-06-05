@@ -1,318 +1,176 @@
-\# 🤖 AI-Powered Document Intelligence Platform
-
-
+# 🤖 AI-Powered Document Intelligence Platform
 
 A Retrieval-Augmented Generation (RAG) chatbot that allows users to upload PDF documents and ask natural language questions about their contents.
 
+Built using LangChain, ChromaDB, Ollama, and Streamlit, this project performs semantic document retrieval and context-aware answer generation entirely on a local machine without relying on cloud-based AI services.
 
+---
 
-Built using LangChain, ChromaDB, Ollama, and Streamlit, this project performs semantic document retrieval and context-aware answer generation completely on a local machine.
+## 🚀 Features
 
+- Upload and analyze PDF documents
+- Automatic PDF parsing and text extraction
+- Intelligent text chunking
+- Semantic search using vector embeddings
+- ChromaDB vector database integration
+- Retrieval-Augmented Generation (RAG)
+- Local LLM inference using Ollama
+- Interactive Streamlit chat interface
+- Page-level source citations
+- Sidebar document analytics
+- Fast retrieval using Max Marginal Relevance (MMR)
+- Fully local and privacy-preserving workflow
 
+---
 
-\---
+## 📸 Screenshots
 
+### PDF Upload & Processing
 
+![PDF Upload](screenshots/upload.png)
 
-\## 🚀 Features
+### Document Question Answering
 
+![Chat Interface](screenshots/chat.png)
 
+---
 
-\- Upload one or more PDF documents
-
-\- Automatic PDF parsing and text extraction
-
-\- Token-based document chunking
-
-\- Semantic search using vector embeddings
-
-\- ChromaDB vector database
-
-\- Retrieval-Augmented Generation (RAG)
-
-\- Local LLM inference using Ollama
-
-\- Streamlit web interface
-
-\- Multi-document support
-
-\- Fast retrieval using Max Marginal Relevance (MMR)
-
-\- Fully local and privacy-preserving workflow
-
-
-
-\---
-
-
-
-\## 🏗️ Architecture
-
-
+## 🏗️ Architecture
 
 ```text
-
 PDF Upload
-
-&#x20;   ↓
-
+     ↓
 Document Loader
-
-&#x20;   ↓
-
+     ↓
 Text Chunking
-
-&#x20;   ↓
-
+     ↓
 Embeddings Generation
-
-&#x20;   ↓
-
-Chroma Vector Database
-
-&#x20;   ↓
-
+     ↓
+ChromaDB Vector Store
+     ↓
 Retriever (MMR)
-
-&#x20;   ↓
-
+     ↓
 Local LLM (Ollama)
-
-&#x20;   ↓
-
-Generated Answer
-
+     ↓
+Generated Answer + Source Citations
 ```
 
+---
 
+## 🛠️ Tech Stack
 
-\---
+### Frontend
+- Streamlit
 
+### AI / LLM
+- LangChain
+- Ollama
+- Llama 3.2 3B
 
+### Vector Database
+- ChromaDB
 
-\## 🛠️ Tech Stack
+### Embeddings
+- Nomic Embed Text
 
+### Language
+- Python
 
+---
 
-\### Frontend
-
-\- Streamlit
-
-
-
-\### AI / LLM
-
-\- LangChain
-
-\- Ollama
-
-\- Llama 3.2 3B
-
-
-
-\### Vector Database
-
-\- ChromaDB
-
-
-
-\### Embeddings
-
-\- nomic-embed-text
-
-
-
-\### Language
-
-\- Python
-
-
-
-\---
-
-
-
-\## 📂 Project Structure
-
-
+## 📂 Project Structure
 
 ```text
-
-RAG\_Chatbot/
-
-│
+RAG_Chatbot/
 
 ├── app.py
-
 ├── README.md
-
-├── rag\_chatbot.ipynb
-
+├── rag_chatbot.ipynb
 │
-
 ├── src/
-
-│   ├── pdf\_loader.py
-
-│   ├── vector\_store.py
-
+│   ├── pdf_loader.py
+│   ├── vector_store.py
 │   ├── retriever.py
-
 │   ├── llm.py
-
-│   └── rag\_chain.py
-
+│   └── rag_chain.py
 │
-
-└── uploaded\_pdfs/
-
+├── screenshots/
+│   ├── upload.png
+│   └── chat.png
+│
+└── uploaded_pdfs/
 ```
 
+---
 
+## ⚙️ Installation
 
-\---
-
-
-
-\## ⚙️ Installation
-
-
-
-\### Clone Repository
-
-
+### Clone Repository
 
 ```bash
-
 git clone https://github.com/Sanjeev-Karnatapu/rag-document-chatbot.git
-
 cd rag-document-chatbot
-
 ```
 
-
-
-\### Install Dependencies
-
-
+### Install Dependencies
 
 ```bash
-
 pip install streamlit
-
 pip install langchain
-
 pip install langchain-community
-
 pip install chromadb
-
 pip install pypdf
-
 ```
 
+### Install Ollama
 
-
-\### Install Ollama
-
-
-
-Download Ollama and install:
-
-
+Download and install Ollama:
 
 https://ollama.com
 
-
-
-Pull required models:
-
-
+Pull the required models:
 
 ```bash
-
 ollama pull llama3.2:3b
-
 ollama pull nomic-embed-text
-
 ```
 
+---
 
-
-\---
-
-
-
-\## ▶️ Run Application
-
-
+## ▶️ Run Application
 
 ```bash
-
 streamlit run app.py
-
 ```
 
+---
 
+## 📈 Performance Optimizations
 
-\---
+- Session-state cached retriever
+- Session-state cached LLM instance
+- MMR retrieval strategy
+- Reduced retrieval context size
+- Fully local inference using Ollama
 
+---
 
+## 🎯 Future Enhancements
 
-\## 📈 Performance Optimizations
+- Persistent vector database
+- PDF summarization
+- Flashcard generation
+- Quiz generation
+- FastAPI backend
+- Cloud deployment
+- Authentication support
 
+---
 
+## 👨‍💻 Author
 
-\- Cached retriever using Streamlit session state
+**Sanjeev Karnatapu**
 
-\- Cached LLM instance
+B.Tech Computer Science Engineering (AI & ML)
 
-\- MMR retrieval strategy
-
-\- Reduced retrieval context size
-
-\- Local inference with Ollama
-
-
-
-\---
-
-
-
-\## 🎯 Future Enhancements
-
-
-
-\- Chat history
-
-\- Source citations
-
-\- Page-level references
-
-\- Persistent vector database
-
-\- FastAPI backend
-
-\- Cloud deployment
-
-\- Authentication support
-
-
-
-\---
-
-
-
-\## 👨‍💻 Author
-
-
-
-\*\*Sanjeev Karnatapu\*\*
-
-
-
-B.Tech Computer Science Engineering (AI \& ML)
-
-
-
-Vellore Institute of Technology
-
+Vellore Institute of Technology, Vellore
