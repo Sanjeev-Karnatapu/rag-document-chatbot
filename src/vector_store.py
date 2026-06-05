@@ -18,8 +18,7 @@ def build_vectorstore(docs):
 
     vectorstore = Chroma.from_documents(
         documents=chunks,
-        embedding=embeddings,
-        persist_directory="chroma_db"
+        embedding=embeddings
     )
 
-    return vectorstore
+    return vectorstore, len(chunks)
