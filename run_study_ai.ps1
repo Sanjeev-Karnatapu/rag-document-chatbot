@@ -14,25 +14,31 @@ function Find-PythonRuntime {
     $launcher = Get-Command py -ErrorAction SilentlyContinue
     if ($null -ne $launcher) {
         foreach ($selector in @('-3.11', '-3')) {
-            $versionText = & $launcher.Source $selector -c 'import sys; print(".".join(map(str, sys.version_info[:3])))' 2>$null
-            if ($LASTEXITCODE -eq 0 -and $versionText) {
-                $version = [version]($versionText | Select-Object -Last 1)
-                if ($version -ge [version]'3.10') {
-                    return [pscustomobject]@{ Exe = $launcher.Source; Prefix = @($selector); Version = $version }
+            try {
+                $versionText = (& $launcher.Source $selector --version | Out-String).Trim()
+                if ($LASTEXITCODE -eq 0 -and $versionText -match 'Python\s+(\d+\.\d+\.\d+)') {
+                    $version = [version]$Matches[1]
+                    if ($version -ge [version]'3.10') {
+                        return [pscustomobject]@{ Exe = $launcher.Source; Prefix = @($selector); Version = $version }
+                    }
                 }
             }
+            catch { continue }
         }
     }
 
     $pythonCommand = Get-Command python -ErrorAction SilentlyContinue
     if ($null -ne $pythonCommand) {
-        $versionText = & $pythonCommand.Source -c 'import sys; print(".".join(map(str, sys.version_info[:3])))' 2>$null
-        if ($LASTEXITCODE -eq 0 -and $versionText) {
-            $version = [version]($versionText | Select-Object -Last 1)
-            if ($version -ge [version]'3.10') {
-                return [pscustomobject]@{ Exe = $pythonCommand.Source; Prefix = @(); Version = $version }
+        try {
+            $versionText = (& $pythonCommand.Source --version | Out-String).Trim()
+            if ($LASTEXITCODE -eq 0 -and $versionText -match 'Python\s+(\d+\.\d+\.\d+)') {
+                $version = [version]$Matches[1]
+                if ($version -ge [version]'3.10') {
+                    return [pscustomobject]@{ Exe = $pythonCommand.Source; Prefix = @(); Version = $version }
+                }
             }
         }
+        catch { }
     }
 
     return $null
