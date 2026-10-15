@@ -8,12 +8,12 @@ from src.llm import load_llm
 from src.rag_chain import ask_question
 
 st.set_page_config(
-    page_title="AI Document Assistant",
+    page_title="Study ai",
     page_icon="🤖",
     layout="wide"
 )
 
-st.title("🤖 AI Document Assistant")
+st.title("🤖 Study ai")
 
 # --------------------------
 # Sidebar
