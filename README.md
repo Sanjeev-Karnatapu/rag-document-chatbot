@@ -1,4 +1,4 @@
-# 🤖 AI-Powered Document Intelligence Platform
+# 🤖 Study AI- AI Powered Document Intelligence Platform
 
 A Retrieval-Augmented Generation (RAG) chatbot that allows users to upload PDF documents and ask natural language questions about their contents.
 
