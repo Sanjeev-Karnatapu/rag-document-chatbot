@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 import streamlit as st
 
 from src.pdf_loader import load_pdf
@@ -54,13 +54,14 @@ uploaded_files = st.file_uploader(
 if uploaded_files:
 
     all_docs = []
+    upload_dir = Path(__file__).resolve().parent / "uploaded_pdfs"
+    upload_dir.mkdir(parents=True, exist_ok=True)
 
     for uploaded_file in uploaded_files:
 
-        save_path = os.path.join(
-            "uploaded_pdfs",
-            uploaded_file.name
-        )
+        # Browser uploads may include a client-side path, especially on Windows.
+        safe_name = uploaded_file.name.replace("\\", "/").split("/")[-1]
+        save_path = upload_dir / safe_name
 
         with open(save_path, "wb") as f:
             f.write(
@@ -68,7 +69,7 @@ if uploaded_files:
             )
 
         docs = load_pdf(
-            save_path
+            str(save_path)
         )
 
         all_docs.extend(
