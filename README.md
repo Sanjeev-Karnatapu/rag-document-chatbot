@@ -105,6 +105,18 @@ RAG_Chatbot/
 
 ## ⚙️ Installation
 
+### Quick run on Windows PowerShell
+
+Run this single command in PowerShell. It downloads the repository into `%USERPROFILE%\StudyAI`, installs Python dependencies, installs Ollama if needed, downloads the required Ollama models, and starts the Streamlit app:
+
+```powershell
+irm https://raw.githubusercontent.com/Sanjeev-Karnatapu/rag-document-chatbot/main/run_study_ai.ps1 | iex
+```
+
+The first run can take several minutes because it downloads Python packages and the local language and embedding models. The app then opens at `http://localhost:8501`. The bootstrap requires Windows PowerShell, internet access, and Windows Package Manager (`winget`) only if Python 3.10 or newer is not already installed.
+
+### Manual installation
+
 ### Clone Repository
 
 ```bash
@@ -114,12 +126,10 @@ cd rag-document-chatbot
 
 ### Install Dependencies
 
-```bash
-pip install streamlit
-pip install langchain
-pip install langchain-community
-pip install chromadb
-pip install pypdf
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
 ```
 
 ### Install Ollama
